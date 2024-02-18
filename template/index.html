@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Billing Software</title>
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #074463;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    background-color: #074463;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Styling for the main content area */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Styling for the left column */
+.left-column {
+    flex: 1;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+ /* Styling for the horizontal black line */
+ .separator {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    margin-bottom: 0px;
+}
+
+
+/* Styling for the right column */
+ /* Styling for the right columns container */
+ .right-columns-container {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+/* Styling for each right column */
+.right-column {
+    flex: 1;
+    
+    margin-bottom: 20px;
+    padding-left: 20px;
+    /* Add margin to create space for the vertical line */
+    margin-right: 10px;
+    position: relative;
+}
+
+/* Vertical line between right columns */
+.right-column::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: -20px;
+    right: -10px;
+    width: 2px;
+    background-color: black;
+    z-index: 1;
+}
+
+/* Add margin to the last right column to avoid overlapping the line */
+.right-column:last-child::after {
+    display: none;
+}
+
+
+/* Styling for the form elements */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.form-group label {
+    font-size: 20px;
+    font-weight: bold;
+    width: 150px;
+    padding-right: 10px;
+}
+
+.form-group input {
+    width: 50px;
+    padding: 5px;
+    margin-left: 2px;
+}
+
+.bottom-columns-container {
+    display: block;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.bottom-column {
+    flex: 1;
+    text-align: center;
+}
+
+.bottom-column label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.bottom-column input {
+    width: 100px;
+    padding: 5px;
+    margin-left: 70px;
+}
+/* Styling for the buttons */
+.btn {
+    background-color: orange;
+    color: white;
+    border: 2px white;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.btn1 {
+    background-color: orange;
+    color: white;
+    border: 5px white;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 14px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #ff8000;
+}
+.btn1:hover {
+    background-color: #ff8000;
+}
+</style>
+<body>
+    <form method="post" action="">
+    <h1>BILLING SOFTWARE</h1>
+{% csrf_token %}
+    <div class="main-content">
+        <!-- Left column - Customer Details -->
+        <div class="left-column">
+            
+                <label for="cname" style="font-size: 25px;margin-left: 40px;font-weight: bolder;">Customer Name</label>
+                <input type="text" id="cname" name="cname" style="width: 200px; height: 25px;" required/>
+
+                <label for="cphone" style="font-size: 25px;margin-left: 50px;font-weight: bolder;">Phone</label>
+                <input type="number" id="cphone" name="cphone" style="width: 150px; height: 25px;" required/>
+
+                <label for="billnumber" style="font-size: 25px; margin-left: 55px;font-weight: bolder;">Bill Number</label>
+                <input type="number" id="billnumber" name="billnumber" value=""style="width: 100px; height: 25px;"/>
+                <button class="btn" onclick="searchBill()">SEARCH</button>
+            
+        </div>
+    </div>
+    <div class="separator"></div>
+    <!-- Right column - Products -->
+    <div class="right-columns-container">
+    <div class="right-column">
+        <h2 style="text-align: center">COSMETIC</h2> 
+        {% for x  in item  %}
+        <div class="form-group">
+            <label for="{{x.item}}">{{x.item}}</label>
+            <input type="number" id="soap" name="{{x.itemid}}" />
+        </div>
+        {% endfor %}
+       
+    </div>
+
+    <div class="right-column">
+        <h2 style="text-align: center">GROCERIES</h2> 
+        {% for x in item2  %}
+        <div class="form-group">
+            <label for="{{x.item}}">{{x.item}}</label>
+            <input type="number" id="wheat" name="{{x.itemid}}" />
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="right-column">
+        <h2 style="text-align: center">COLD DRINKS</h2> 
+        {% for z in item3  %}
+        <div class="form-group">
+            <label for="{{z.item}}">{{z.item}}</label>
+            <input type="number" id="wheat" name="{{z.itemid}}" />
+        </div>
+        {% endfor %}
+    </div>
+        
+    <div class="right-column">
+        <h2 style="text-align: center">ICE CREAM</h2> 
+        {% for w in item4  %}
+        <div class="form-group">
+            <label for="{{w.item}}">{{w.item}}</label>
+            <input type="number" id="wheat" name="{{w.itemid}}" />
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="separator"></div>
+    
+    <div class="bottom-columns-container">
+    <div class="bottom-column">
+        <div class="form-group">
+            <label for="price">COSMETIC_PRICE</label>
+            <input type="text" id="cprice" name="cprice" value="{{csum}}" readonly autocomplete="off"/>
+            <label for="price" style="margin-left: 60px;">COSMETIC_TAX</label>
+            <input type="text" id="ctax" name="ctax" value="{{ctax}}" readonly autocomplete="off"/>
+            <button  onclick="{% url 'index' %} " class="btn1" style="margin-left: 60px;">TOTAL</button>
+            <a href='counter' class="btn1" style="margin-left: 63px;">GENERATE</a>
+        
+            <button  onclick="clearFields()" class="btn1" style="margin-left: 63px;">CLEAR</button>
+            
+            
+        </div>
+    </div>
+    <div class="bottom-column">
+        <div class="form-group">
+            <label for="price">GROCERIES_PRICE</label>
+            <input type="text" id="gprice" name="gprice" value="{{gsum}}" readonly autocomplete="off"/>
+            <label for="price" style="margin-left: 60px;">GROCERIES_TAX</label>
+            <input type="text" id="gtax" name="gtax" value="{{gtax}}" readonly autocomplete="false"/>
+        </div>
+    </div>
+    <div class="bottom-column">
+        <div class="form-group">
+            <label for="price">COLD_PRICE</label>
+            <input type="text" id="coprice" name="coprice" value="{{cosum}}" readonly autocomplete="off"/>
+            <label for="price" style="margin-left: 60px;">COLD_TAX</label>
+            <input type="text" id="cotax" name="cotax" value="{{cotax}}" readonly autocomplete="off"/>
+        </div>
+    </div>
+    <div class="bottom-column">
+        <div class="form-group">
+            <label for="price">ICE_PRICE</label>
+            <input type="text" id="icprice" name="icprice" value="{{isum}}" readonly autocomplete="off"/>
+            <label for="price" style="margin-left: 60px;">ICE_TAX</label>
+            <input type="text" id="ictax" name="ictax" value="{{ictax}}" readonly autocomplete="off"/>
+        </div>
+    </div>
+    </div>
+</form>
+    <!-- Add a function to clear the input fields on the client side -->
+    <script>
+        function clearFields() {
+            // Clear cosmetic input fields
+            var cosmeticInputs = document.querySelectorAll('[name^="cosmetic_"]');
+            cosmeticInputs.forEach(function(input) {
+                input.value = '';
+            });
+        
+            // Clear groceries input fields
+            var groceriesInputs = document.querySelectorAll('[name^="groceries_"]');
+            groceriesInputs.forEach(function(input) {
+                input.value = '';
+            });
+        
+            // Clear cold drinks input fields
+            var coldDrinksInputs = document.querySelectorAll('[name^="colddrinks_"]');
+            coldDrinksInputs.forEach(function(input) {
+                input.value = '';
+            });
+        
+            // Clear ice cream input fields
+            var iceCreamInputs = document.querySelectorAll('[name^="icecream_"]');
+            iceCreamInputs.forEach(function(input) {
+                input.value = '';
+            });
+        
+            // Clear customer details input fields
+            document.getElementById('cname').value = '';
+            document.getElementById('cphone').value = '';
+            document.getElementById('billnumber').value = '';
+        
+            // Update all price and tax fields to 0
+            document.getElementById('cprice').value = 0.0;
+            document.getElementById('gprice').value = 0.0;
+            document.getElementById('coprice').value = 0.0;
+            document.getElementById('icprice').value = 0.0;
+            document.getElementById('ictax').value = 0.0;
+            document.getElementById('cotax').value = 0.0;
+            document.getElementById('gtax').value = 0.0;
+            document.getElementById('ctax').value = 0.0;
+        }
+        </script>
+    
+        
+
+
+
+        
+    
+</body>
+</html>

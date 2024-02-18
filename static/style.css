@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #074463;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    background-color: #074463;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Styling for the main content area */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Styling for the left column */
+.left-column {
+    flex: 1;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+ /* Styling for the horizontal black line */
+ .separator {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    margin-bottom: 0px;
+}
+
+
+/* Styling for the right column */
+ /* Styling for the right columns container */
+ .right-columns-container {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+/* Styling for each right column */
+.right-column {
+    flex: 1;
+    
+    margin-bottom: 20px;
+    padding-left: 20px;
+    /* Add margin to create space for the vertical line */
+    margin-right: 10px;
+    position: relative;
+}
+
+/* Vertical line between right columns */
+.right-column::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: -20px;
+    right: -10px;
+    width: 2px;
+    background-color: black;
+    z-index: 1;
+}
+
+/* Add margin to the last right column to avoid overlapping the line */
+.right-column:last-child::after {
+    display: none;
+}
+
+
+/* Styling for the form elements */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.form-group label {
+    font-size: 20px;
+    font-weight: bold;
+    width: 150px;
+    padding-right: 10px;
+}
+
+.form-group input {
+    width: 50px;
+    padding: 5px;
+    margin-left: 2px;
+}
+
+.bottom-columns-container {
+    display: block;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.bottom-column {
+    flex: 1;
+    text-align: center;
+}
+
+.bottom-column label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.bottom-column input {
+    width: 100px;
+    padding: 5px;
+    margin-left: 70px;
+}
+/* Styling for the buttons */
+.btn {
+    background-color: orange;
+    color: white;
+    border: 2px white;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.btn1 {
+    background-color: orange;
+    color: white;
+    border: 5px white;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 14px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #ff8000;
+}
+.btn1:hover {
+    background-color: #ff8000;
+}
